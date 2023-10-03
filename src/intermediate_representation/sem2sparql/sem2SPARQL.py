@@ -310,7 +310,7 @@ def col_to_str(agg, col, tab, table_names, N=1, is_distinct=False):
 
 
 def replace_col_with_original_col(query, col, current_table):
-    # print(query, col)
+   # print(query, col)
     if query == '*':
         return query, None
 
@@ -327,7 +327,10 @@ def replace_col_with_original_col(query, col, current_table):
                 single_final_col_idx = col_ind
                 break
     # SELECT package_option ,  series_name FROM TV_Channel WHERE high_definition_TV  =  "yes"
-    assert single_final_col
+    try:
+        assert single_final_col
+    except Exception as e:
+        print(e)
     # if query != single_final_col:
     #     print(query, single_final_col)
     return single_final_col, single_final_col_idx

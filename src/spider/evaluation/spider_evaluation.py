@@ -25,8 +25,6 @@ import os, sys
 import json
 import psycopg2
 import tqdm
-
-import sparql
 import traceback
 import argparse
 import sys
@@ -642,7 +640,7 @@ def psql_conn(db_name, query):
     counter = 0
     while conn is None:
         try:
-            conn = psycopg2.connect(dbname=db_name, user="valuenet4sparql", password= "valuenet4sparql", host= "biosoda.cloudlab.zhaw.ch", port="5432")
+            conn = psycopg2.connect(dbname="spider", user="postgres", password="vdS83DJSQz2xQ",host="testbed.inode.igd.fraunhofer.de", port="18001", options=f"-c search_path={db_name}")
         except Exception as e:
             counter = counter + 1
             if counter > 3:

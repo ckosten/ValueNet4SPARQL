@@ -25,7 +25,7 @@ import os, sys
 import json
 import psycopg2
 
-import sparql
+from SPARQLWrapper import SPARQLWrapper, JSON, SmartWrapper, SPARQLWrapper2
 import traceback
 import argparse
 import sys
@@ -645,7 +645,7 @@ def psql_conn(db_name, query):
     counter = 0
     while conn is None:
         try:
-            conn = psycopg2.connect(dbname=db_name, user="valuenet4sparql", password= "valuenet4sparql", host= "biosoda.cloudlab.zhaw.ch", port="5432")
+            conn = psycopg2.connect(dbname="spider", user="postgres", password="vdS83DJSQz2xQ",host="testbed.inode.igd.fraunhofer.de", port="18001", options=f"-c search_path={db_name}")
         except Exception as e:
             counter = counter + 1
             if counter > 3:
@@ -679,15 +679,26 @@ def get_sql_values(q_values):
     return q_res
 
 
+def execute_sparql(query, db_name):
+    sparql = SPARQLWrapper2('http://160.85.254.15:7200/repositories/' + db_name.lower())
+    sparql.setReturnFormat(JSON)
+    sparql.setQuery('PREFIX dbo:  <http://valuenet/ontop/> '+ query)
+        # the previous query as a literal string
+    results = sparql.query()
+    vars = results.variables
+    lists = [results.getValues(var) for var in vars]
+    return list(zip(*lists))
+
+
 def eval_exec_match(db_name, sparql_str, g_str, false_neg_list):
     """
     return 1 if the values between prediction and gold are matching
     in the corresponding index. Currently not support multiple col_unit(pairs).
     """
     # print("db: {}           sql-pred: {}            sql-gold: {}".format(db, sparql_str, g_str))
-    kg = 'http://160.85.254.15:7200/repositories/' + db_name.lower()
-    prefix = 'PREFIX dbo:  <http://valuenet/ontop/> '
-    conn = sparql.Service(kg, "utf-8", "POST", "application/sparql-results+xml")
+    #kg = 'http://160.85.254.15:7200/repositories/' + db_name.lower()
+    #prefix = 'PREFIX dbo:  <http://valuenet/ontop/> '
+    #conn = sparql.Service(kg, "utf-8", "POST", "application/sparql-results+xml")
     exception = ''
     p_res = []
     q_res = []
@@ -701,15 +712,20 @@ def eval_exec_match(db_name, sparql_str, g_str, false_neg_list):
         while i < 3 and not is_successful:
             try:
                 i += 1
-                result = conn.query(prefix + sparql_str, timeout)
+                results = execute_sparql(sparql_str, db_name)
                 is_successful = True
             except Exception as e:
                 timeout = timeout
                 if i == 3:
                     raise e
         if is_successful:
-            for row in result:
-                values = sparql.unpack_row(row)
+            for result in results:
+                result_length = len(result)
+                values= [int(result[i].value) if result[i].datatype== 'http://www.w3.org/2001/XMLSchema#integer' else result[i].value for i in range(result_length) ]
+           # if results[0][0].datatype == 'http://www.w3.org/2001/XMLSchema#integer':
+           #     values = [int(results[0][0].value)]
+           # else:
+                #values = [result[idx].value for idx, result in enumerate(results)]
                 counter = 0
                 for value in values:
                     if isinstance(value, decimal.Decimal):
@@ -725,7 +741,7 @@ def eval_exec_match(db_name, sparql_str, g_str, false_neg_list):
         q_res = get_sql_values(q_values)
     except Exception as e:
         traceback.print_exc()
-        print("could not execute query '\n\r{}\n\r'. Exception: {}. Database: {}".format(sparql_str, e, kg))
+        print("could not execute query '\n\r{}\n\r'. Exception: {}. Database: {}".format(sparql_str, e, db_name))
         exception = e
         # return False
 

@@ -95,7 +95,7 @@ def get_schema(db):
     counter = 0
     while conn is None:
         try:
-            conn = psycopg2.connect(dbname=db, user="valuenet4sparql", password="valuenet4sparql",host="biosoda.cloudlab.zhaw.ch", port="5432")
+            conn = psycopg2.connect(dbname="spider", user="postgres", password="vdS83DJSQz2xQ",host="testbed.inode.igd.fraunhofer.de", port="18001", options=f"-c search_path={db}")
         except Exception as e:
             counter = counter + 1
             if counter > 3:
@@ -104,12 +104,12 @@ def get_schema(db):
     cursor = conn.cursor()
 
     # fetch table names
-    cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';")
+    cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'voter_1';")
     tables = [str(table[0].lower()) for table in cursor.fetchall()]
 
     # fetch table info
     for table in tables:
-        cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_schema = 'public' AND table_name = '{}'".format(table))
+        cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_schema = 'voter_1' AND table_name = '{}'".format(table))
         schema[table] = [str(col[0].lower()) for col in cursor.fetchall()]
 
     conn.close()
@@ -200,7 +200,10 @@ def parse_col(toks, start_idx, tables_with_alias, schema, default_tables=None):
 
     if '.' in tok:  # if token is a composite
         alias, col = tok.split('.')
-        key = tables_with_alias[alias] + "." + col
+        try:
+            key = tables_with_alias[alias] + "." + col
+        except Exception as e:
+            print(e)
         return start_idx+1, schema.idMap[key]
 
     assert default_tables is not None and len(default_tables) > 0, "Default tables should not be None or empty"
@@ -413,15 +416,9 @@ def parse_from(toks, start_idx, tables_with_alias, schema):
         else:
             if idx < len_ and toks[idx] == 'join':
                 idx += 1  # skip join
-            if toks[idx] in tables_with_alias:
-                idx, table_unit, table_name = parse_table_unit(toks, idx, tables_with_alias, schema)
-                table_units.append((TABLE_TYPE['table_unit'], table_unit))
-                default_tables.append(table_name)
-            elif toks[idx] == "as":
-                idx += 2
-            else:
-                idx = toks.index('from', idx + 1) + 1
-
+            idx, table_unit, table_name = parse_table_unit(toks, idx, tables_with_alias, schema)
+            table_units.append((TABLE_TYPE['table_unit'],table_unit))
+            default_tables.append(table_name)
         if idx < len_ and toks[idx] == "on":
             idx += 1  # skip on
             idx, this_conds = parse_condition(toks, idx, tables_with_alias, schema, default_tables)

@@ -1,0 +1,297 @@
+SELECT count(*) FROM singer	concert_singer	How many singers do we have?
+SELECT count(*) FROM singer	concert_singer	What is the total number of singers?
+SELECT name ,  country ,  age FROM singer ORDER BY age DESC	concert_singer	Show name, country, age for all singers ordered by age from the oldest to the youngest.
+SELECT name ,  country ,  age FROM singer ORDER BY age DESC	concert_singer	What are the names, countries, and ages for every singer in descending order of age?
+SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'	concert_singer	What is the average, minimum, and maximum age of all singers from France?
+SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'	concert_singer	What is the average, minimum, and maximum age for all French singers?
+SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1	concert_singer	Show the name and the release year of the song by the youngest singer.
+SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1	concert_singer	What are the names and release years for all the songs of the youngest singer?
+SELECT DISTINCT country FROM singer WHERE age  >  20	concert_singer	What are all distinct countries where singers above age 20 are from?
+SELECT DISTINCT country FROM singer WHERE age  >  20	concert_singer	What are  the different countries with singers above age 20?
+SELECT country ,  count(*) FROM singer GROUP BY country	concert_singer	Show all countries and the number of singers in each country.
+SELECT country ,  count(*) FROM singer GROUP BY country	concert_singer	How many singers are from each country?
+SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)	concert_singer	List all song names by singers above the average age.
+SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)	concert_singer	What are all the song names by singers who are older than average?
+SELECT LOCATION ,  name FROM stadium WHERE capacity BETWEEN 5000 AND 10000	concert_singer	Show location and name for all stadiums with a capacity between 5000 and 10000.
+SELECT LOCATION ,  name FROM stadium WHERE capacity BETWEEN 5000 AND 10000	concert_singer	What are the locations and names of all stations with capacity between 5000 and 10000?
+SELECT avg(capacity) ,  max(capacity) FROM stadium	concert_singer	What is the average and the maximum capacity of all stadiums?
+SELECT avg(capacity) ,  max(capacity) FROM stadium	concert_singer	What is the average and maximum capacities for all stations?
+SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1	concert_singer	What is the name and capacity for the stadium with highest average attendance?
+SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1	concert_singer	What is the name and capacity for the stadium with the highest average attendance?
+SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015	concert_singer	How many concerts are there in year 2014 or 2015?
+SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015	concert_singer	How many concerts occurred in 2014 or 2015?
+SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id	concert_singer	Show the stadium name and the number of concerts in each stadium.
+SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id	concert_singer	For each stadium, how many concerts play there?
+SELECT T2.name ,  T2.capacity FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  >=  2014 GROUP BY T2.stadium_id ORDER BY count(*) DESC LIMIT 1	concert_singer	Show the stadium name and capacity with most number of concerts in year 2014 or after.
+SELECT T2.name ,  T2.capacity FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  >=  2014 GROUP BY T2.stadium_id ORDER BY count(*) DESC LIMIT 1	concert_singer	What is the name and capacity of the stadium  with the most concerts after 2014?
+SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1	concert_singer	Which year has most number of concerts?
+SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1	concert_singer	What is the year that had the most concerts?
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)	concert_singer	Show the stadium names without any concert.
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)	concert_singer	What are the names of the stadiums without any concerts?
+SELECT country FROM singer WHERE age  >  40 INTERSECT SELECT country FROM singer WHERE age  <  30	concert_singer	Show countries where a singer above age 40 and a singer below 30 are from.
+SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014	concert_singer	Show names for all stadiums except for stadiums having a concert in year 2014.
+SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014	concert_singer	What are the names of all stadiums that did not have a concert in 2014?
+SELECT T2.concert_name ,  T2.theme ,  count(*) FROM singer_in_concert AS T1 JOIN concert AS T2 ON T1.concert_id  =  T2.concert_id GROUP BY T2.concert_id	concert_singer	Show the name and theme for all concerts and the number of singers in each concert.
+SELECT T2.concert_name ,  T2.theme ,  count(*) FROM singer_in_concert AS T1 JOIN concert AS T2 ON T1.concert_id  =  T2.concert_id GROUP BY T2.concert_id	concert_singer	What are the names, themes, and number of singers for each and every concert?
+SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id	concert_singer	List singer names and number of concerts for each singer.
+SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id	concert_singer	What are the names of the singers and number of concerts for each person?
+SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014	concert_singer	List all singer names in concerts in year 2014.
+SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014	concert_singer	What are the names of the singers who performed in a concert in 2014?
+SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'	concert_singer	what is the name and nation of the singer who have a song having 'Hey' in its name?
+SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'	concert_singer	What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?
+SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015	concert_singer	Find the name and location of the stadiums which some concerts happened in the years of both 2014 and 2015.
+SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015	concert_singer	What are the names and locations of the stadiums that had concerts that occurred in both 2014 and 2015?
+SELECT count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id ORDER BY T2.Capacity DESC LIMIT 1	concert_singer	Find the number of concerts happened in the stadium with the highest capacity.
+SELECT count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id ORDER BY T2.Capacity DESC LIMIT 1	concert_singer	What are the number of concerts that occurred in the stadium with the largest capacity?
+SELECT count(*) FROM pets WHERE weight  >  10	pets_1	Find the number of pets whose weight is heavier than 10.
+SELECT count(*) FROM pets WHERE weight  >  10	pets_1	How many pets have a greater weight than 10?
+SELECT weight FROM pets ORDER BY pet_age LIMIT 1	pets_1	Find the weight of the youngest dog.
+SELECT weight FROM pets ORDER BY pet_age LIMIT 1	pets_1	How much does the youngest dog weigh?
+SELECT max(weight) ,  petType FROM pets GROUP BY petType	pets_1	Find the maximum weight for each type of pet. List the maximum weight and pet type.
+SELECT max(weight) ,  petType FROM pets GROUP BY petType	pets_1	List the maximum weight and type for each type of pet.
+SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20	pets_1	Find number of pets owned by students who are older than 20.
+SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20	pets_1	How many pets are owned by students that have an age greater than 20?
+SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog'	pets_1	Find the number of dog pets that are raised by female students (with sex F).
+SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog'	pets_1	How many dog pets are raised by female students?
+SELECT count(DISTINCT pettype) FROM pets	pets_1	Find the number of distinct type of pets.
+SELECT count(DISTINCT pettype) FROM pets	pets_1	How many different types of pet are there?
+SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'	pets_1	Find the first name of students who have cat or dog pet.
+SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'	pets_1	What are the first names of every student who has a cat or dog as a pet?
+SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog'	pets_1	Find the name of students who have both cat and dog pets.
+SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog'	pets_1	What are the students' first names who have both cats and dogs as pets?
+SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')	pets_1	Find the major and age of students who do not have a cat pet.
+SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')	pets_1	What major is every student who does not own a cat as a pet, and also how old are they?
+SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'	pets_1	Find the id of students who do not have a cat pet.
+SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'	pets_1	What are the ids of the students who do not own cats as pets?
+SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')	pets_1	Find the first name and age of students who have a dog but do not have a cat as a pet.
+SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')	pets_1	What is the first name of every student who has a dog but does not have a cat?
+SELECT pettype ,  weight FROM pets ORDER BY pet_age LIMIT 1	pets_1	Find the type and weight of the youngest pet.
+SELECT pettype ,  weight FROM pets ORDER BY pet_age LIMIT 1	pets_1	What type of pet is the youngest animal, and how much does it weigh?
+SELECT petid ,  weight FROM pets WHERE pet_age  >  1	pets_1	Find the id and weight of all pets whose age is older than 1.
+SELECT petid ,  weight FROM pets WHERE pet_age  >  1	pets_1	What is the id and weight of every pet who is older than 1?
+SELECT avg(pet_age) ,  max(pet_age) ,  pettype FROM pets GROUP BY pettype	pets_1	Find the average and maximum age for each type of pet.
+SELECT avg(pet_age) ,  max(pet_age) ,  pettype FROM pets GROUP BY pettype	pets_1	What is the average and maximum age for each pet type?
+SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype	pets_1	Find the average weight for each pet type.
+SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype	pets_1	What is the average weight for each type of pet?
+SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid	pets_1	Find the first name and age of students who have a pet.
+SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid	pets_1	What are the different first names and ages of the students who do have pets?
+SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.Lname  =  'Smith'	pets_1	Find the id of the pet owned by student whose last name is ‘Smith’.
+SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.Lname  =  'Smith'	pets_1	What is the id of the pet owned by the student whose last name is 'Smith'?
+SELECT count(*) ,  T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid	pets_1	Find the number of pets for each student who has any pet and student id.
+SELECT count(*) ,  T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid	pets_1	For students who have pets, how many pets does each student have?
+SELECT T1.fname ,  T1.sex FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid HAVING count(*)  >  1	pets_1	Find the first name and gender of student who have more than one pet.
+SELECT T1.fname ,  T1.sex FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid HAVING count(*)  >  1	pets_1	What is the first name and gender of the all the students who have more than one pet?
+SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'	pets_1	Find the last name of the student who has a cat that is age 3.
+SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'	pets_1	What is the last name of the student who has a cat that is 3 years old?
+SELECT avg(age) FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid)	pets_1	Find the average age of students who do not have any pet.
+SELECT avg(age) FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid)	pets_1	What is the average age for all students who do not own any pets?
+SELECT count(*) FROM CONTINENTS;	car_1	How many continents are there?
+SELECT count(*) FROM CONTINENTS;	car_1	What is the number of continents?
+SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;	car_1	How many countries does each continent have? List the continent id, continent name and the number of countries.
+SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;	car_1	For each continent, list its id, name, and how many countries it has?
+SELECT count(*) FROM COUNTRIES;	car_1	How many countries are listed?
+SELECT count(*) FROM COUNTRIES;	car_1	How many countries exist?
+SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;	car_1	How many models does each car maker produce? List maker full name, id and the number.
+SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;	car_1	What is the full name of each car maker, along with its id and how many models it produces?
+SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;	car_1	Which model of the car has the minimum horsepower?
+SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;	car_1	What is the model of the car with the smallest amount of horsepower?
+SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)	car_1	Find the model of the car whose weight is below the average weight.
+SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)	car_1	What is the model for the car with a weight smaller than the average?
+SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';	car_1	Find the name of the makers that produced some cars in the year of 1970?
+SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';	car_1	What is the name of the different car makers who produced a car in 1970?
+SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);	car_1	Find the make and production time of the cars that were produced in the earliest year?
+SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);	car_1	What is the maker of the carr produced in the earliest year and what year was it?
+SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;	car_1	Which distinct car models are the produced after 1980?
+SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;	car_1	What are the different models for the cards produced after 1980?
+SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;	car_1	How many car makers are there in each continents? List the continent name and the count.
+SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;	car_1	What is the name of each continent and how many car makers are there in each one?
+SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;	car_1	Which of the countries has the most car makers? List the country name.
+SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;	car_1	What is the name of the country with the most car makers?
+SELECT Count(*) ,  T2.FullName ,  T2.id FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id GROUP BY T2.id;	car_1	How many car models are produced by each maker? List the count and the maker full name.
+SELECT Count(*) ,  T2.FullName ,  T2.id FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id GROUP BY T2.id;	car_1	What is the number of car models that are produced by each maker and what is the id and full name of each maker?
+SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';	car_1	What is the accelerate of the car make amc hornet sportabout (sw)?
+SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';	car_1	How much does the car accelerate that makes amc hornet sportabout (sw)?
+SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';	car_1	How many car makers are there in france?
+SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';	car_1	What is the number of makers of care in France?
+SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';	car_1	How many car models are produced in the usa?
+SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';	car_1	What is the count of the car models produced in the United States?
+SELECT avg(mpg) FROM CARS_DATA WHERE Cylinders  =  4;	car_1	What is the average miles per gallon(mpg) of the cars with 4 cylinders?
+SELECT avg(mpg) FROM CARS_DATA WHERE Cylinders  =  4;	car_1	What is the average miles per gallon of all the cards with 4 cylinders?
+SELECT Weight FROM CARS_DATA WHERE Cylinders  =  4 AND YEAR  =  1974 ORDER BY Weight ASC LIMIT 1;	car_1	What is the smallest weight of the car produced with 4 cylinders on 1974?
+SELECT Weight FROM CARS_DATA WHERE Cylinders  =  4 AND YEAR  =  1974 ORDER BY Weight ASC LIMIT 1;	car_1	What is the minimu weight of the car with 4 cylinders produced in 1974?
+SELECT Maker ,  Model FROM MODEL_LIST;	car_1	What are all the makers and models?
+SELECT Maker ,  Model FROM MODEL_LIST;	car_1	What are the makers and models?
+SELECT T1.CountryName ,  T1.CountryId FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.CountryId HAVING count(*)  >=  1;	car_1	What are the countries having at least one car maker? List name and id.
+SELECT T1.CountryName ,  T1.CountryId FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.CountryId HAVING count(*)  >=  1;	car_1	What are the names and ids of all countries with at least one car maker?
+SELECT count(*) FROM CARS_DATA WHERE horsepower  >  150;	car_1	What is the number of the cars with horsepower more than 150?
+SELECT count(*) FROM CARS_DATA WHERE horsepower  >  150;	car_1	What is the number of cars with a horsepower greater than 150?
+SELECT avg(Weight) ,  YEAR FROM CARS_DATA GROUP BY YEAR;	car_1	What is the average weight of cars each year?
+SELECT avg(Weight) ,  YEAR FROM CARS_DATA GROUP BY YEAR;	car_1	What is the average weight and year for each year?
+SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;	car_1	Which countries in europe have at least 3 car manufacturers?
+SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;	car_1	What are the names of all European countries with at least 3 manufacturers?
+SELECT T2.horsepower ,  T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.cylinders  =  3 ORDER BY T2.horsepower DESC LIMIT 1;	car_1	What is the maximum horsepower and the make of the car models with 3 cylinders?
+SELECT T2.horsepower ,  T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.cylinders  =  3 ORDER BY T2.horsepower DESC LIMIT 1;	car_1	What is the largest amount of horsepower for the models with 3 cylinders and what make is it?
+SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.mpg DESC LIMIT 1;	car_1	Which model saves the most gasoline? That is to say, have the maximum miles per gallon.
+SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.mpg DESC LIMIT 1;	car_1	What is the car wmodel with the highest mpg?
+SELECT avg(horsepower) FROM CARS_DATA WHERE YEAR  <  1980;	car_1	What is the average horsepower of the cars before 1980?
+SELECT avg(horsepower) FROM CARS_DATA WHERE YEAR  <  1980;	car_1	What is the average horsepower for all cards produced before 1980?
+SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T1.Model  =  'volvo';	car_1	What is the average edispl of the cars of model volvo?
+SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T1.Model  =  'volvo';	car_1	What is the average edispl for all volvos?
+SELECT max(Accelerate) ,  Cylinders FROM CARS_DATA GROUP BY Cylinders;	car_1	What is the maximum accelerate for different number of cylinders?
+SELECT max(Accelerate) ,  Cylinders FROM CARS_DATA GROUP BY Cylinders;	car_1	What is the maximum accelerate for all the different cylinders?
+SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1;	car_1	Which model has the most version(make) of cars?
+SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1;	car_1	What model has the most different versions?
+SELECT count(*) FROM CARS_DATA WHERE Cylinders  >  4;	car_1	How many cars have more than 4 cylinders?
+SELECT count(*) FROM CARS_DATA WHERE Cylinders  >  4;	car_1	What is the number of cars with more than 4 cylinders?
+SELECT count(*) FROM CARS_DATA WHERE YEAR  =  1980;	car_1	how many cars were produced in 1980?
+SELECT count(*) FROM CARS_DATA WHERE YEAR  =  1980;	car_1	In 1980, how many cars were made?
+SELECT count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker WHERE T1.FullName  =  'American Motor Company';	car_1	How many car models were produced by the maker with full name American Motor Company?
+SELECT count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker WHERE T1.FullName  =  'American Motor Company';	car_1	What is the number of car models created by the car maker American Motor Company?
+SELECT T1.FullName ,  T1.Id FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >  3;	car_1	Which makers designed more than 3 car models? List full name and the id.
+SELECT T1.FullName ,  T1.Id FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >  3;	car_1	What are the names and ids of all makers with more than 3 models?
+SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model  =  T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker  =  T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId  =  T4.Id WHERE T3.FullName  =  'General Motors' OR T4.weight  >  3500;	car_1	Which distinctive models are produced by maker with the full name General Motors or weighing more than 3500?
+SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model  =  T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker  =  T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId  =  T4.Id WHERE T3.FullName  =  'General Motors' OR T4.weight  >  3500;	car_1	What are the different models created by either the car maker General Motors or weighed more than 3500?
+SELECT DISTINCT T1.Year FROM CARS_DATA AS T1 WHERE T1.Weight  >  3000 AND T1.weight  <  4000;	car_1	In which years cars were produced weighing no less than 3000 and no more than 4000?
+SELECT DISTINCT T1.Year FROM CARS_DATA AS T1 WHERE T1.Weight  >  3000 AND T1.weight  <  4000;	car_1	What are the different years in which there were cars produced that weighed less than 4000 and also cars that weighted more than 3000?
+SELECT T1.horsepower FROM CARS_DATA AS T1 ORDER BY T1.accelerate DESC LIMIT 1;	car_1	What is the horsepower of the car with the largest accelerate?
+SELECT T1.horsepower FROM CARS_DATA AS T1 ORDER BY T1.accelerate DESC LIMIT 1;	car_1	What is the horsepower of the car with the greatest accelerate?
+SELECT T1.cylinders FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Model  =  'volvo' ORDER BY T1.accelerate ASC LIMIT 1;	car_1	For model volvo, how many cylinders does the car with the least accelerate have?
+SELECT T1.cylinders FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Model  =  'volvo' ORDER BY T1.accelerate ASC LIMIT 1;	car_1	For a volvo model, how many cylinders does the version with least accelerate have?
+SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );	car_1	How many cars have a larger accelerate than the car with the largest horsepower?
+SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );	car_1	What is the number of cars with a greater accelerate than the one with the most horsepower?
+SELECT COUNT(*) FROM ( SELECT T1.CountryId ,  COUNT(*) FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.CountryId HAVING count(*)  >  2 );	car_1	How many countries has more than 2 car makers?
+SELECT COUNT(*) FROM ( SELECT T1.CountryId ,  COUNT(*) FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.CountryId HAVING count(*)  >  2 );	car_1	What is the number of countries with more than 2 car makers?
+SELECT COUNT(*) FROM CARS_DATA WHERE Cylinders  >  6;	car_1	How many cars has over 6 cylinders?
+SELECT COUNT(*) FROM CARS_DATA WHERE Cylinders  >  6;	car_1	What is the number of carsw ith over 6 cylinders?
+SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Cylinders  =  4 ORDER BY T2.horsepower DESC LIMIT 1;	car_1	For the cars with 4 cylinders, which model has the largest horsepower?
+SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Cylinders  =  4 ORDER BY T2.horsepower DESC LIMIT 1;	car_1	For all of the 4 cylinder cars, which model has the most horsepower?
+SELECT T2.MakeId ,  T2.Make FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Horsepower  >  (SELECT min(Horsepower) FROM CARS_DATA) AND T1.Cylinders  <=  3;	car_1	Among the cars with more than lowest horsepower, which ones do not have more than 3 cylinders? List the car makeid and make name.
+SELECT T2.MakeId ,  T2.Make FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Horsepower  >  (SELECT min(Horsepower) FROM CARS_DATA) AND T1.Cylinders  <  4;	car_1	Among the cars that do not have the minimum horsepower, what are the make ids and names of al those with less than 4 cylinders?
+SELECT mpg FROM CARS_DATA WHERE Cylinders  =  8 OR YEAR  <  1980 ORDER BY mpg DESC LIMIT 1;	car_1	What is the maximum miles per gallon of the car with 8 cylinders or produced before 1980?
+SELECT mpg FROM CARS_DATA WHERE Cylinders  =  8 OR YEAR  <  1980 ORDER BY mpg DESC LIMIT 1;	car_1	What is the maximum mpg of the cars that had 8 cylinders or that were produced before 1980?
+SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.Model  =  T2.Model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.Id JOIN CAR_MAKERS AS T4 ON T1.Maker  =  T4.Id WHERE T3.weight  <  3500 AND T4.FullName != 'Ford Motor Company';	car_1	Which models are lighter than 3500 but not built by the 'Ford Motor Company'?
+SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.Model  =  T2.Model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.Id JOIN CAR_MAKERS AS T4 ON T1.Maker  =  T4.Id WHERE T3.weight  <  3500 AND T4.FullName != 'Ford Motor Company';	car_1	What are the different models wthat are lighter than 3500 but were not built by the Ford Motor Company?
+SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId  =  T2.Country;	car_1	What are the name of the countries where there is not a single car maker?
+SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId  =  T2.Country;	car_1	What are the names of the countries with no car makers?
+SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >=  2 INTERSECT SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model GROUP BY T1.Id HAVING count(*)  >  3;	car_1	Which are the car makers which produce at least 2 models and more than 3 car makes? List the id and the maker.
+SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >=  2 INTERSECT SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model GROUP BY T1.Id HAVING count(*)  >  3;	car_1	What are the ids and makers of all car makers that produce at least 2 models and make more than 3 cars?
+SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.countryId HAVING count(*)  >  3 UNION SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country JOIN MODEL_LIST AS T3 ON T2.Id  =  T3.Maker WHERE T3.Model  =  'fiat';	car_1	What are the id and names of the countries which have more than 3 car makers or produce the 'fiat' model?
+SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.countryId HAVING count(*)  >  3 UNION SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country JOIN MODEL_LIST AS T3 ON T2.Id  =  T3.Maker WHERE T3.Model  =  'fiat';	car_1	What are the ids and names of all countries that either have more than 3 car makers or produce fiats?
+SELECT Country FROM AIRLINES WHERE Airline  =  "JetBlue Airways"	flight_2	Which country does Airline "JetBlue Airways" belong to?
+SELECT Country FROM AIRLINES WHERE Airline  =  "JetBlue Airways"	flight_2	What country is Jetblue Airways affiliated with?
+SELECT Abbreviation FROM AIRLINES WHERE Airline  =  "JetBlue Airways"	flight_2	What is the abbreviation of Airline "JetBlue Airways"?
+SELECT Abbreviation FROM AIRLINES WHERE Airline  =  "JetBlue Airways"	flight_2	Which abbreviation corresponds to Jetblue Airways?
+SELECT Airline ,  Abbreviation FROM AIRLINES WHERE Country  =  "USA"	flight_2	List all airline names and their abbreviations in "USA".
+SELECT Airline ,  Abbreviation FROM AIRLINES WHERE Country  =  "USA"	flight_2	What are the airline names and abbreviations for airlines in the USA?
+SELECT AirportCode ,  AirportName FROM AIRPORTS WHERE city  =  "Anthony"	flight_2	List the airport code and name in the city of Anthony.
+SELECT AirportCode ,  AirportName FROM AIRPORTS WHERE city  =  "Anthony"	flight_2	Give the airport code and airport name corresonding to the city Anthony.
+SELECT count(*) FROM AIRLINES	flight_2	How many airlines do we have?
+SELECT count(*) FROM AIRLINES	flight_2	What is the total number of airlines?
+SELECT count(*) FROM AIRPORTS	flight_2	How many airports do we have?
+SELECT count(*) FROM AIRPORTS	flight_2	Return the number of  airports.
+SELECT count(*) FROM FLIGHTS	flight_2	How many flights do we have?
+SELECT count(*) FROM FLIGHTS	flight_2	Return the number of flights.
+SELECT Airline FROM AIRLINES WHERE Abbreviation  =  "UAL"	flight_2	Which airline has abbreviation 'UAL'?
+SELECT Airline FROM AIRLINES WHERE Abbreviation  =  "UAL"	flight_2	Give the airline with abbreviation 'UAL'.
+SELECT count(*) FROM AIRLINES WHERE Country  =  "USA"	flight_2	How many airlines are from USA?
+SELECT count(*) FROM AIRLINES WHERE Country  =  "USA"	flight_2	Return the number of airlines in the USA.
+SELECT City ,  Country FROM AIRPORTS WHERE AirportName  =  "Alton"	flight_2	Which city and country is the Alton airport at?
+SELECT City ,  Country FROM AIRPORTS WHERE AirportName  =  "Alton"	flight_2	Give the city and country for the Alton airport.
+SELECT AirportName FROM AIRPORTS WHERE AirportCode  =  "AKO"	flight_2	What is the airport name for airport 'AKO'?
+SELECT AirportName FROM AIRPORTS WHERE AirportCode  =  "AKO"	flight_2	Return the name of the airport with code 'AKO'.
+SELECT AirportName FROM AIRPORTS WHERE City = "Aberdeen"	flight_2	What are airport names at City 'Aberdeen'?
+SELECT AirportName FROM AIRPORTS WHERE City = "Aberdeen"	flight_2	What are the names of airports in Aberdeen?
+SELECT count(*) FROM FLIGHTS WHERE SourceAirport  =  "APG"	flight_2	How many flights depart from 'APG'?
+SELECT count(*) FROM FLIGHTS WHERE SourceAirport  =  "APG"	flight_2	Count the number of flights departing from 'APG'.
+SELECT count(*) FROM FLIGHTS WHERE DestAirport  =  "ATO"	flight_2	How many flights have destination ATO?
+SELECT count(*) FROM FLIGHTS WHERE DestAirport  =  "ATO"	flight_2	Count the number of flights into ATO.
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport  =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	How many flights depart from City Aberdeen?
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport  =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	Return the number of flights departing from Aberdeen.
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	How many flights arriving in Aberdeen city?
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	Return the number of flights arriving in Aberdeen.
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRPORTS AS T3 ON T1.SourceAirport  =  T3.AirportCode WHERE T2.City  =  "Ashley" AND T3.City  =  "Aberdeen"	flight_2	How many flights depart from City 'Aberdeen' and have destination City 'Ashley'?
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRPORTS AS T3 ON T1.SourceAirport  =  T3.AirportCode WHERE T2.City  =  "Ashley" AND T3.City  =  "Aberdeen"	flight_2	How many flights fly from Aberdeen to Ashley?
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline  =  T2.uid WHERE T2.Airline = "JetBlue Airways"	flight_2	How many flights does airline 'JetBlue Airways' have?
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline  =  T2.uid WHERE T2.Airline = "JetBlue Airways"	flight_2	Give the number of Jetblue Airways flights.
+SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline  =  T1.uid WHERE T1.Airline  =  "United Airlines" AND T2.DestAirport  =  "ASY"	flight_2	How many 'United Airlines' flights go to Airport 'ASY'?
+SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline  =  T1.uid WHERE T1.Airline  =  "United Airlines" AND T2.DestAirport  =  "ASY"	flight_2	Count the number of United Airlines flights arriving in ASY Airport.
+SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline  =  T1.uid WHERE T1.Airline  =  "United Airlines" AND T2.SourceAirport  =  "AHD"	flight_2	How many 'United Airlines' flights depart from Airport 'AHD'?
+SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline  =  T1.uid WHERE T1.Airline  =  "United Airlines" AND T2.SourceAirport  =  "AHD"	flight_2	Return the number of United Airlines flights leaving from AHD Airport.
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid  =  T1.Airline WHERE T2.City  =  "Aberdeen" AND T3.Airline  =  "United Airlines"	flight_2	How many United Airlines flights go to City 'Aberdeen'?
+SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid  =  T1.Airline WHERE T2.City  =  "Aberdeen" AND T3.Airline  =  "United Airlines"	flight_2	Count the number of United Airlines flights that arrive in Aberdeen.
+SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1	flight_2	Which city has most number of arriving flights?
+SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1	flight_2	Which city has the most frequent destination airport?
+SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1	flight_2	Which city has most number of departing flights?
+SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1	flight_2	Which city is the most frequent source airport?
+SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1	flight_2	What is the code of airport that has the highest number of flights?
+SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1	flight_2	What is the airport code of the airport with the most flights?
+SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1	flight_2	What is the code of airport that has fewest number of flights?
+SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1	flight_2	Give the code of the airport with the least flights.
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1	flight_2	Which airline has most number of flights?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1	flight_2	What airline serves the most flights?
+SELECT T1.Abbreviation ,  T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1	flight_2	Find the abbreviation and country of the airline that has fewest number of flights?
+SELECT T1.Abbreviation ,  T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1	flight_2	What is the abbreviation of the airilne has the fewest flights and what country is it in?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "AHD"	flight_2	What are airlines that have some flight departing from airport 'AHD'?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "AHD"	flight_2	Which airlines have a flight with source airport AHD?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.DestAirport  =  "AHD"	flight_2	What are airlines that have flights arriving at airport 'AHD'?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.DestAirport  =  "AHD"	flight_2	Which airlines have a flight with destination airport AHD?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG" INTERSECT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO"	flight_2	Find all airlines that have flights from both airports 'APG' and 'CVO'.
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG" INTERSECT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO"	flight_2	Which airlines have departing flights from both APG and CVO airports?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG"	flight_2	Find all airlines that have flights from airport 'CVO' but not from 'APG'.
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG"	flight_2	Which airlines have departures from CVO but not from APG airports?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  >  10	flight_2	Find all airlines that have at least 10 flights.
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  >  10	flight_2	Which airlines have at least 10 flights?
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  <  200	flight_2	Find all airlines that have fewer than 200 flights.
+SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  <  200	flight_2	Which airlines have less than 200 flights?
+SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid  =  T1.Airline WHERE T2.Airline  =  "United Airlines"	flight_2	What are flight numbers of Airline "United Airlines"?
+SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid  =  T1.Airline WHERE T2.Airline  =  "United Airlines"	flight_2	Which flight numbers correspond to United Airlines flights?
+SELECT FlightNo FROM FLIGHTS WHERE SourceAirport  =  "APG"	flight_2	What are flight numbers of flights departing from Airport "APG"?
+SELECT FlightNo FROM FLIGHTS WHERE SourceAirport  =  "APG"	flight_2	Give the flight numbers of flights leaving from APG.
+SELECT FlightNo FROM FLIGHTS WHERE DestAirport  =  "APG"	flight_2	What are flight numbers of flights arriving at Airport "APG"?
+SELECT FlightNo FROM FLIGHTS WHERE DestAirport  =  "APG"	flight_2	Give the flight numbers of flights landing at APG.
+SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport   =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	What are flight numbers of flights departing from City "Aberdeen "?
+SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport   =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	Give the flight numbers of flights leaving from Aberdeen.
+SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport   =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	What are flight numbers of flights arriving at City "Aberdeen"?
+SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport   =  T2.AirportCode WHERE T2.City  =  "Aberdeen"	flight_2	Give the flight numbers of flights arriving in Aberdeen.
+SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.city  =  "Aberdeen" OR T2.city  =  "Abilene"	flight_2	Find the number of flights landing in the city of Aberdeen or Abilene.
+SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.city  =  "Aberdeen" OR T2.city  =  "Abilene"	flight_2	How many flights land in Aberdeen or Abilene?
+SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights)	flight_2	Find the name of airports which do not have any flight in and out.
+SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights)	flight_2	Which airports do not have departing or arriving flights?
+SELECT count(*) FROM employee	employee_hire_evaluation	How many employees are there?
+SELECT count(*) FROM employee	employee_hire_evaluation	Count the number of employees
+SELECT name FROM employee ORDER BY age	employee_hire_evaluation	Sort employee names by their age in ascending order.
+SELECT name FROM employee ORDER BY age	employee_hire_evaluation	List the names of employees and sort in ascending order of age.
+SELECT count(*) ,  city FROM employee GROUP BY city	employee_hire_evaluation	What is the number of employees from each city?
+SELECT count(*) ,  city FROM employee GROUP BY city	employee_hire_evaluation	Count the number of employees for each city.
+SELECT city FROM employee WHERE age  <  30 GROUP BY city HAVING count(*)  >  1	employee_hire_evaluation	Which cities do more than one employee under age 30 come from?
+SELECT city FROM employee WHERE age  <  30 GROUP BY city HAVING count(*)  >  1	employee_hire_evaluation	Find the cities that have more than one employee under age 30.
+SELECT count(*) ,  LOCATION FROM shop GROUP BY LOCATION	employee_hire_evaluation	Find the number of shops in each location.
+SELECT count(*) ,  LOCATION FROM shop GROUP BY LOCATION	employee_hire_evaluation	How many shops are there in each location?
+SELECT manager_name ,  district FROM shop ORDER BY number_products DESC LIMIT 1	employee_hire_evaluation	Find the manager name and district of the shop whose number of products is the largest.
+SELECT manager_name ,  district FROM shop ORDER BY number_products DESC LIMIT 1	employee_hire_evaluation	What are the manager name and district of the shop that sells the largest number of products?
+SELECT min(Number_products) ,  max(Number_products) FROM shop	employee_hire_evaluation	find the minimum and maximum number of products of all stores.
+SELECT min(Number_products) ,  max(Number_products) FROM shop	employee_hire_evaluation	What are the minimum and maximum number of products across all the shops?
+SELECT name ,  LOCATION ,  district FROM shop ORDER BY number_products DESC	employee_hire_evaluation	Return the name, location and district of all shops in descending order of number of products.
+SELECT name ,  LOCATION ,  district FROM shop ORDER BY number_products DESC	employee_hire_evaluation	Sort all the shops by number products in descending order, and return the name, location and district of each shop.
+SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop)	employee_hire_evaluation	Find the names of stores whose number products is more than the average number of products.
+SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop)	employee_hire_evaluation	Which shops' number products is above the average? Give me the shop names.
+SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID  =  t2.Employee_ID GROUP BY t2.Employee_ID ORDER BY count(*) DESC LIMIT 1	employee_hire_evaluation	find the name of employee who was awarded the most times in the evaluation.
+SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID  =  t2.Employee_ID GROUP BY t2.Employee_ID ORDER BY count(*) DESC LIMIT 1	employee_hire_evaluation	Which employee received the most awards in evaluations? Give me the employee name.
+SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID  =  t2.Employee_ID ORDER BY t2.bonus DESC LIMIT 1	employee_hire_evaluation	Find the name of the employee who got the highest one time bonus.
+SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID  =  t2.Employee_ID ORDER BY t2.bonus DESC LIMIT 1	employee_hire_evaluation	Which employee received the biggest bonus? Give me the employee name.
+SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)	employee_hire_evaluation	Find the names of employees who never won any award in the evaluation.
+SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)	employee_hire_evaluation	What are the names of the employees who never received any evaluation?
+SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1	employee_hire_evaluation	What is the name of the shop that is hiring the largest number of employees?
+SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1	employee_hire_evaluation	Which shop has the most employees? Give me the shop name.
+SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)	employee_hire_evaluation	Find the name of the shops that do not hire any employee.
+SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)	employee_hire_evaluation	Which shops run with no employees? Find the shop names
+SELECT count(*) ,  t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t2.name	employee_hire_evaluation	Find the number of employees hired in each shop; show the shop name as well.
+SELECT count(*) ,  t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t2.name	employee_hire_evaluation	For each shop, return the number of employees working there and the name of the shop.
+SELECT sum(bonus) FROM evaluation	employee_hire_evaluation	What is total bonus given in all evaluations?
+SELECT sum(bonus) FROM evaluation	employee_hire_evaluation	Find the total amount of bonus given in all the evaluations.
+SELECT * FROM hiring	employee_hire_evaluation	Give me all the information about hiring.
+SELECT * FROM hiring	employee_hire_evaluation	What is all the information about hiring?
+SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000	employee_hire_evaluation	Which district has both stores with less than 3000 products and stores with more than 10000 products?
+SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000	employee_hire_evaluation	Find the districts in which there are both shops selling less than 3000 products and shops selling more than 10000 products.
+SELECT count(DISTINCT LOCATION) FROM shop	employee_hire_evaluation	How many different store locations are there?
+SELECT count(DISTINCT LOCATION) FROM shop	employee_hire_evaluation	Count the number of distinct store locations.

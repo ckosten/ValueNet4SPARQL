@@ -1,2 +1,7 @@
 /.idea/
 /venv/
+spider_materialized_KGs
+PostgreSQL_spider_databases
+KG_Construction
+.history
+.run

@@ -21,11 +21,11 @@ class Format(object):
     @staticmethod
     def exportDf():
         df = pd.DataFrame(Format.rows, columns=['database', 'natural language q', 'sql', 'sql_result', 'sparql', 'sparql_result', 'difficulty', 'match', 'score', 'exception'])
-        df.to_csv('src/experiments/SparqlPrediction/KG_enriched_ont.csv')
+        df.to_csv('src/experiments/SparqlPrediction/KG_enriched_ont_voter_1.csv')
 
     @staticmethod
     def exportDf_SQL():
         df = pd.DataFrame(Format.rows,
                           columns=['database', 'natural language q', 'sql', 'sql_result', 'pred_sql', 'pred_sql_result',
                                    'difficulty', 'match', 'score', 'exception'])
-        df.to_csv('src/experiments/SparqlPrediction/ValueNet_baseline.csv')
+        df.to_csv('src/experiments/SparqlPrediction/ValueNet_baseline_voter_1.csv')

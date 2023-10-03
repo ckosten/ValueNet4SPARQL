@@ -3,10 +3,9 @@ import json
 
 import os
 
-#directors for enriched ontop files with domain and range info
+#directory for enriched ontop files with domain and range info
 directory = os.fsencode('KG Construction/Generated')
-db_names=['concert_singer', 'pets_1', 'car_1', 'flight_2', 'cre_Doc_Template_Mgt', 'course_teach', 'world_1', 'network_1', 'dog_kennels', 'battle_death',
-         'employee_hire_evaluation', 'museum_visit','orchestra','poker_player','real_estate_properties', 'singer', 'student_transcripts_tracking', 'tvshow', 'wta_1']
+db_names=['voter_1']
 directories=[]
 for root, subdirectories, files in os.walk(directory):
     for file in files:
@@ -56,6 +55,6 @@ def newTable(directories):
                                 new_tables["foreign_keys"].append([z, new_tables["table_names"].index(range.locale)])
         all_tables.append(new_tables)
         y+=1
-    with open("data/spider/original/KG_enriched_ont.json", 'w') as new_file:
+    with open("data/spider/original/voter_1.json", 'w') as new_file:
         json.dump([all_tables], new_file, indent=4)  # indent formats it into a nice cute json
 newTable(directories)

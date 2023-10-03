@@ -1977,7 +1977,7 @@
             "text",
             "text"
         ],
-        "db_id": "cre_doc_template_mgt",
+        "db_id": "cre_Doc_Template_Mgt",
         "foreign_keys": [
             [
                 5,
@@ -4859,5 +4859,143 @@
             "performance",
             "show"
         ]
-    }
+    },
+        {
+            "column_names": [
+                [
+                    -1,
+                    "*"
+                ],
+                [
+                    0,
+                    "area code"
+                ],
+                [
+                    0,
+                    "state"
+                ],
+                [
+                    1,
+                    "contestant name"
+                ],
+                [
+                    1,
+                    "contestant number"
+                ],
+                [
+                    2,
+                    "area code"
+                ],
+                [
+                    2,
+                    "contestant number"
+                ],
+                [
+                    2,
+                    "created"
+                ],
+                [
+                    2,
+                    "phone number"
+                ],
+                [
+                    2,
+                    "vote id"
+                ],
+                [
+                    2,
+                    "ref area code"
+                ],
+                [
+                    2,
+                    "ref contestant number"
+                ]
+            ],
+            "column_names_original": [
+                [
+                    -1,
+                    "*"
+                ],
+                [
+                    0,
+                    "area_code"
+                ],
+                [
+                    0,
+                    "state"
+                ],
+                [
+                    1,
+                    "contestant_name"
+                ],
+                [
+                    1,
+                    "contestant_number"
+                ],
+                [
+                    2,
+                    "area_code"
+                ],
+                [
+                    2,
+                    "contestant_number"
+                ],
+                [
+                    2,
+                    "created"
+                ],
+                [
+                    2,
+                    "phone_number"
+                ],
+                [
+                    2,
+                    "vote_id"
+                ],
+                [
+                    2,
+                    "ref-area_code"
+                ],
+                [
+                    2,
+                    "ref-contestant_number"
+                ]
+            ],
+            "column_types": [
+                "text",
+                "number",
+                "text",
+                "text",
+                "number",
+                "number",
+                "number",
+                "time",
+                "text",
+                "number",
+                "text",
+                "text"
+            ],
+            "db_id": "voter_1",
+            "foreign_keys": [
+                [
+                    5,
+                    1
+                ],
+                [
+                    6,
+                    4
+                ]
+            ],
+            "primary_keys": [],
+            "table_names": [
+                "area code state",
+                "contestants",
+                "votes"
+            ],
+            "table_names_original": [
+                "area_code_state",
+                "contestants",
+                "votes"
+            ]
+        }
   ]

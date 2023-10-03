@@ -137,7 +137,7 @@ def process(sql, table):
     return process_dict
 
 +6
-def load_data_new(sql_path, table_data, use_small=False):
+def load_data_new(sql_path, table_data, use_small=True):
     sql_data = []
 
     # sql_data basically is what we see in the original spider-data: https://github.com/taoyds/spider. it is though
@@ -150,7 +150,7 @@ def load_data_new(sql_path, table_data, use_small=False):
         data = json.load(inf)
         # resize before lower_keys() to reduce computation effort
         if use_small:
-            data = data[:80]
+            data = data[685:700]
         data = lower_keys(data)
         sql_data += data
 
@@ -165,10 +165,10 @@ def load_data_new(sql_path, table_data, use_small=False):
     return sql_data, table_dict
 
 
-def load_dataset(dataset_dir, use_small=False):
+def load_dataset(dataset_dir, use_small=True):
     print("Loading from datasets...")
-    table_path = os.path.join(dataset_dir, "original", "KG_enriched_ont.json")
-    dev_path = os.path.join(dataset_dir, "dev_PostgreSQL_compatible.json")
+    table_path = os.path.join(dataset_dir, "original", "KG_baseline_ont.json")
+    dev_path = os.path.join(dataset_dir, "dev.json")
     with open(table_path, encoding='utf-8') as inf:
         # table_data is basically a dict with 19 dev datasets of spider.
         # Each sub-dict contains the name of all classes, as well as relations between them (domain and range)

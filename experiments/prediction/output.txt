@@ -1,0 +1,297 @@
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:singer .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:singer .        }    
+select ?t1_name ?t1_country ?t1_age where { ?t1 a dbo:singer . ?t1 dbo:singer\#name ?t1_name . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#age ?t1_age .        }  order by desc (?t1_age)  
+select ?t1_name ?t1_country ?t1_age where { ?t1 a dbo:singer . ?t1 dbo:singer\#name ?t1_name . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#age ?t1_age .        }  order by desc (?t1_age)  
+select (avg( ?t1_age) as ?aggregation_t1_age_72 ) (min( ?t1_age) as ?aggregation_t1_age_269 ) (max( ?t1_age) as ?aggregation_t1_age_63 ) where { ?t1 a dbo:singer . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#country ?t1_country . FILTER(?t1_country = 'France') .        }    
+select (avg( ?t1_age) as ?aggregation_t1_age_62 ) (min( ?t1_age) as ?aggregation_t1_age_28 ) (max( ?t1_age) as ?aggregation_t1_age_349 ) where { ?t1 a dbo:singer . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#age ?t1_age . ?t1 dbo:singer\#country ?t1_country . FILTER(?t1_country = 'France') .        }    
+select ?t1_song_name ?t1_song_release_year where { ?t1 a dbo:singer . ?t1 dbo:singer\#song_name ?t1_song_name . ?t1 dbo:singer\#song_release_year ?t1_song_release_year . ?t1 dbo:singer\#age ?t1_age .        }   order by asc (?t1_age) limit 1 
+select ?t1_song_name ?t1_song_release_year where { ?t1 a dbo:singer . ?t1 dbo:singer\#song_name ?t1_song_name . ?t1 dbo:singer\#song_release_year ?t1_song_release_year . ?t1 dbo:singer\#age ?t1_age .        }   order by asc (?t1_age) limit 1 
+select distinct ?t1_country where { ?t1 a dbo:singer . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#age ?t1_age . FILTER(?t1_age > '20') .        }    
+select distinct ?t1_country where { ?t1 a dbo:singer . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#age ?t1_age . FILTER(?t1_age > '20') .        }    
+select ?t1_country (count( *) as ?aggregation_all) where { ?t1 a dbo:singer . ?t1 dbo:singer\#country ?t1_country .        } group by ?t1_country   
+select ?t1_country (count( *) as ?aggregation_all) where { ?t1 a dbo:singer . ?t1 dbo:singer\#country ?t1_country .        } group by ?t1_country   
+select ?t1_song_name where { ?t1 a dbo:singer . ?t1 dbo:singer\#song_name ?t1_song_name . ?t1 dbo:singer\#age ?t1_age . FILTER(?t1_age > ?aggregation_t22_age_419) .       {select (avg( ?t22_age) as ?aggregation_t22_age_419 ) where { ?t22 a dbo:singer . ?t22 dbo:singer\#age ?t22_age .        }    } }    
+select ?t1_song_name where { ?t1 a dbo:singer . ?t1 dbo:singer\#song_name ?t1_song_name . ?t1 dbo:singer\#age ?t1_age . FILTER(?t1_age > ?aggregation_t22_age_319) .       {select (avg( ?t22_age) as ?aggregation_t22_age_319 ) where { ?t22 a dbo:singer . ?t22 dbo:singer\#age ?t22_age .        }    } }    
+select ?t1_location ?t1_name where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#location ?t1_location . ?t1 dbo:stadium\#name ?t1_name . ?t1 dbo:stadium\#capacity ?t1_capacity . FILTER(?t1_capacity >= '5000' && ?t1_capacity <= '10000') .        }    
+select ?t1_location ?t1_name where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#location ?t1_location . ?t1 dbo:stadium\#name ?t1_name . ?t1 dbo:stadium\#capacity ?t1_capacity . FILTER(?t1_capacity >= '5000' && ?t1_capacity <= '10000') .        }    
+select (avg( ?t1_capacity) as ?aggregation_t1_capacity_104 ) (max( ?t1_capacity) as ?aggregation_t1_capacity_191 ) where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#capacity ?t1_capacity . ?t1 dbo:stadium\#capacity ?t1_capacity .        }    
+select (avg( ?t1_capacity) as ?aggregation_t1_capacity_351 ) (max( ?t1_capacity) as ?aggregation_t1_capacity_4 ) where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#capacity ?t1_capacity . ?t1 dbo:stadium\#capacity ?t1_capacity .        }    
+select ?t1_name ?t1_capacity where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#name ?t1_name . ?t1 dbo:stadium\#capacity ?t1_capacity . ?t1 dbo:stadium\#average ?t1_average .        }   order by desc (?t1_average) limit 1 
+select ?t1_name ?t1_capacity where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#name ?t1_name . ?t1 dbo:stadium\#capacity ?t1_capacity . ?t1 dbo:stadium\#average ?t1_average .        }   order by desc (?t1_average) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:concert . ?t1 dbo:concert\#year ?t1_year . ?t1 dbo:concert\#year ?t1_year . FILTER(?t1_year = '2014' || ?t1_year = '2015') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:concert . ?t1 dbo:concert\#year ?t1_year . ?t1 dbo:concert\#year ?t1_year . FILTER(?t1_year = '2014' || ?t1_year = '2015') .        }    
+select ?t1_name (count( *) as ?aggregation_all) where { stadium as t1 join concert as t2        } group by ?t1_name   
+select ?t1_name (count( *) as ?aggregation_all) where { stadium as t1 join concert as t2        } group by ?t1_name   
+select ?t1_name ?t1_capacity where { stadium as t1 join concert as t2 FILTER(?t2_year >= '2014') .        } group by ?t1_name ?t1_capacity  order by desc (count(*)) limit 1 
+select ?t1_name ?t1_capacity where { stadium as t1 join concert as t2 FILTER(?t2_year >= '2014') .        } group by ?t1_name ?t1_capacity  order by desc (count(*)) limit 1 
+select ?t1_year where { ?t1 a dbo:concert . ?t1 dbo:concert\#year ?t1_year .        } group by ?t1_year  order by desc (count(*)) limit 1 
+select ?t1_year where { ?t1 a dbo:concert . ?t1 dbo:concert\#year ?t1_year .        } group by ?t1_year  order by desc (count(*)) limit 1 
+select ?t1_name where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#name ?t1_name . ?t1 dbo:stadium\#stadium_id ?t1_stadium_id .     Filter not exists {{select ?t22_stadium_id where { ?t22 a dbo:concert . ?t22 dbo:concert\#stadium_id ?t22_stadium_id .        }    } FILTER (?t1_stadium_id in (?t22_stadium_id))}  }    
+select ?t1_name where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#name ?t1_name . ?t1 dbo:stadium\#stadium_id ?t1_stadium_id .     Filter not exists {{select ?t22_stadium_id where { ?t22 a dbo:concert . ?t22 dbo:concert\#stadium_id ?t22_stadium_id .        }    } FILTER (?t1_stadium_id in (?t22_stadium_id))}  }    
+select distinct ?t1_country where { ?t1 a dbo:singer . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#age ?t1_age . FILTER(?t1_age > '40') . FILTER (?t1_country in (?t2_country)) .  { ?t2 a dbo:singer . ?t2 dbo:singer\#country ?t2_country . ?t2 dbo:singer\#age ?t2_age .  FILTER(?t2_age < '30') .     }      }    
+SELECT distinct?col1 WHERE { { select (?t1_name as ?col1) where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#name ?t1_name .   }}  MINUS {select (?t2_name as ?col1) where { stadium as t2 join concert as t3 FILTER(?t3_year = '2014') .        }     } }    
+SELECT distinct?col1 WHERE { { select (?t1_name as ?col1) where { ?t1 a dbo:stadium . ?t1 dbo:stadium\#name ?t1_name .   }}  MINUS {select (?t2_name as ?col1) where { stadium as t2 join concert as t3 FILTER(?t3_year = '2014') .        }     } }    
+select ?t1_concert_name ?t1_theme (count( *) as ?aggregation_all) where { concert as t1 join singer as t2        } group by ?t1_concert_name ?t1_theme   
+select ?t1_concert_name ?t1_theme (count( *) as ?aggregation_all) where { concert as t1 join singer as t2        } group by ?t1_concert_name ?t1_theme   
+select ?t1_name (count( *) as ?aggregation_all) where { singer as t1 join concert as t2        } group by ?t1_name   
+select ?t1_name (count( *) as ?aggregation_all) where { singer as t1 join concert as t2        } group by ?t1_name   
+select ?t1_name where { singer as t1 join singer_in_concert as t2 join concert as t3 FILTER(?t3_year = '2014') .        }    
+select ?t1_name where { singer as t1 join singer_in_concert as t2 join concert as t3 FILTER(?t3_year = '2014') .        }    
+select ?t1_name ?t1_country where { ?t1 a dbo:singer . ?t1 dbo:singer\#name ?t1_name . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#song_name ?t1_song_name . FILTER(contains (?t1_song_name, 'Hey')) .        }    
+select ?t1_name ?t1_country where { ?t1 a dbo:singer . ?t1 dbo:singer\#name ?t1_name . ?t1 dbo:singer\#country ?t1_country . ?t1 dbo:singer\#song_name ?t1_song_name . FILTER(contains (?t1_song_name, 'Hey')) .        }    
+select distinct ?t1_name ?t1_location where { stadium as t1 join concert as t2 FILTER(?t2_year = '2014') . FILTER (?t1_name in (?t3_name)) . FILTER (?t1_location in (?t3_location)) .  { stadium as t3 join concert as t4  FILTER(?t4_year = '2015') .     }      }    
+select distinct ?t1_name ?t1_location where { stadium as t1 join concert as t2 FILTER(?t2_year = '2014') . FILTER (?t1_name in (?t3_name)) . FILTER (?t1_location in (?t3_location)) .  { stadium as t3 join concert as t4  FILTER(?t4_year = '2015') .     }      }    
+select (count( *) as ?aggregation_all) where { concert as t1 join stadium as t2        }   group by ?t2_capacity order by desc (?t2_capacity) limit 1 
+select (count( *) as ?aggregation_all) where { concert as t1 join stadium as t2        }   group by ?t2_capacity order by desc (?t2_capacity) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . FILTER(?t1_weight > '10') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . FILTER(?t1_weight > '10') .        }    
+select ?t1_weight where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pet_age ?t1_pet_age .        }   order by asc (?t1_pet_age) limit 1 
+select ?t1_weight where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pet_age ?t1_pet_age .        }   order by asc (?t1_pet_age) limit 1 
+select (max( ?t1_weight) as ?aggregation_t1_weight_333 ) ?t1_pettype where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pettype ?t1_pettype .        } group by ?t1_pettype   
+select (max( ?t1_weight) as ?aggregation_t1_weight_397 ) ?t1_pettype where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pettype ?t1_pettype .        } group by ?t1_pettype   
+select (count( *) as ?aggregation_all) where { pets as t1 join student as t2 FILTER(?t2_age > '20') .        }    
+select (count( *) as ?aggregation_all) where { pets as t1 join student as t2 FILTER(?t2_age > '20') .        }    
+select (count( *) as ?aggregation_all) where { pets as t1 join student as t2 FILTER(?t2_sex = 'F' && ?t1_pettype = 'dog') .        }    
+select (count( *) as ?aggregation_all) where { pets as t1 join student as t2 FILTER(?t2_sex = 'F' && ?t1_pettype = 'dog') .        }    
+select distinct (count(distinct ?t1_pettype) as ?aggregation_t1_pettype_463 ) where { ?t1 a dbo:pets . ?t1 dbo:pets\#pettype ?t1_pettype .        }    
+select distinct (count(distinct ?t1_pettype) as ?aggregation_t1_pettype_268 ) where { ?t1 a dbo:pets . ?t1 dbo:pets\#pettype ?t1_pettype .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+ ?t1 a dbo:student .      
+ ?t1 a dbo:student .      
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:student .        }    
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select ?t1_pettype ?t1_weight where { ?t1 a dbo:pets . ?t1 dbo:pets\#pettype ?t1_pettype . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pet_age ?t1_pet_age .        }   order by asc (?t1_pet_age) limit 1 
+select ?t1_pettype ?t1_weight where { ?t1 a dbo:pets . ?t1 dbo:pets\#pettype ?t1_pettype . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pet_age ?t1_pet_age .        }   order by asc (?t1_pet_age) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (avg( ?t1_pet_age) as ?aggregation_t1_pet_age_468 ) (max( ?t1_pet_age) as ?aggregation_t1_pet_age_218 ) ?t1_pettype where { ?t1 a dbo:pets . ?t1 dbo:pets\#pet_age ?t1_pet_age . ?t1 dbo:pets\#pet_age ?t1_pet_age . ?t1 dbo:pets\#pettype ?t1_pettype .        } group by ?t1_pettype   
+select (avg( ?t1_pet_age) as ?aggregation_t1_pet_age_306 ) (max( ?t1_pet_age) as ?aggregation_t1_pet_age_76 ) ?t1_pettype where { ?t1 a dbo:pets . ?t1 dbo:pets\#pet_age ?t1_pet_age . ?t1 dbo:pets\#pet_age ?t1_pet_age . ?t1 dbo:pets\#pettype ?t1_pettype .        } group by ?t1_pettype   
+select (avg( ?t1_weight) as ?aggregation_t1_weight_468 ) ?t1_pettype where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pettype ?t1_pettype .        } group by ?t1_pettype   
+select (avg( ?t1_weight) as ?aggregation_t1_weight_301 ) ?t1_pettype where { ?t1 a dbo:pets . ?t1 dbo:pets\#weight ?t1_weight . ?t1 dbo:pets\#pettype ?t1_pettype .        } group by ?t1_pettype   
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:student .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:countries .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:countries .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select ?t1_model where { car_names as t1 join cars_data as t2        }   order by asc (?t2_horsepower) limit 1 
+select ?t1_model where { car_names as t1 join cars_data as t2        }   order by asc (?t2_horsepower) limit 1 
+select ?t1_model where { car_names as t1 join cars_data as t2 FILTER(?t2_weight < ?aggregation_t23_weight_329) .       {select (avg( ?t23_weight) as ?aggregation_t23_weight_329 ) where { ?t23 a dbo:cars_data . ?t23 dbo:cars_data\#weight ?t23_weight .        }    } }    
+select ?t1_model where { car_names as t1 join cars_data as t2 FILTER(?t2_weight < ?aggregation_t23_weight_150) .       {select (avg( ?t23_weight) as ?aggregation_t23_weight_150 ) where { ?t23 a dbo:cars_data . ?t23 dbo:cars_data\#weight ?t23_weight .        }    } }    
+select distinct ?t1_maker where { car_makers as t1 join model_list as t2 join cars_data as t3 FILTER(?t3_year = '1970') .        }    
+select distinct ?t1_maker where { car_makers as t1 join model_list as t2 join cars_data as t3 FILTER(?t3_year = '1970') .        }    
+select ?t1_make ?t2_year where { car_names as t1 join cars_data as t2 FILTER(?t2_year = ?aggregation_t23_year_253) .       {select (min( ?t23_year) as ?aggregation_t23_year_253 ) where { ?t23 a dbo:cars_data . ?t23 dbo:cars_data\#year ?t23_year .        }    } }    
+select ?t1_make ?t2_year where { car_names as t1 join cars_data as t2 FILTER(?t2_year = ?aggregation_t23_year_334) .       {select (min( ?t23_year) as ?aggregation_t23_year_334 ) where { ?t23 a dbo:cars_data . ?t23 dbo:cars_data\#year ?t23_year .        }    } }    
+select distinct ?t1_model where { model_list as t1 join car_names as t2 join cars_data as t3 FILTER(?t3_year > '1980') .        }    
+select distinct ?t1_model where { model_list as t1 join car_names as t2 join cars_data as t3 FILTER(?t3_year > '1980') .        }    
+select ?t1_continent (count( *) as ?aggregation_all) where { continents as t1 join car_makers as t2        } group by ?t1_continent   
+select ?t1_continent (count( *) as ?aggregation_all) where { continents as t1 join car_makers as t2        } group by ?t1_continent   
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select ?t1_accelerate where { cars_data as t1 join car_names as t2 FILTER(?t2_make = 'amc hornet sportabout (sw)') .        }    
+select ?t1_accelerate where { cars_data as t1 join car_names as t2 FILTER(?t2_make = 'amc hornet sportabout (sw)') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (avg( ?t1_mpg) as ?aggregation_t1_mpg_12 ) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#mpg ?t1_mpg . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . FILTER(?t1_cylinders = '4') .        }    
+select (avg( ?t1_mpg) as ?aggregation_t1_mpg_13 ) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#mpg ?t1_mpg . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . FILTER(?t1_cylinders = '4') .        }    
+select ?t1_weight where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_cylinders = '4' && ?t1_year = '1974') .        }   order by asc (?t1_weight) limit 1 
+select ?t1_weight where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_cylinders = '4' && ?t1_year = '1974') .        }   order by asc (?t1_weight) limit 1 
+select ?t1_maker ?t1_model where { ?t1 a dbo:model_list . ?t1 dbo:model_list\#maker ?t1_maker . ?t1 dbo:model_list\#model ?t1_model .        }    
+select ?t1_maker ?t1_model where { ?t1 a dbo:model_list . ?t1 dbo:model_list\#maker ?t1_maker . ?t1 dbo:model_list\#model ?t1_model .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#horsepower ?t1_horsepower . FILTER(?t1_horsepower > '150') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#horsepower ?t1_horsepower . FILTER(?t1_horsepower > '150') .        }    
+select (avg( ?t1_weight) as ?aggregation_t1_weight_24 ) ?t1_year where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#year ?t1_year .        } group by ?t1_year   
+select (avg( ?t1_weight) as ?aggregation_t1_weight_132 ) ?t1_year where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#year ?t1_year .        } group by ?t1_year   
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select ?t1_horsepower ?t2_make where { cars_data as t1 join car_names as t2 FILTER(?t1_cylinders = '3') .        }   order by desc (?t1_horsepower) limit 1 
+select ?t1_horsepower ?t2_make where { cars_data as t1 join car_names as t2 FILTER(?t1_cylinders = '3') .        }   order by desc (?t1_horsepower) limit 1 
+select ?t1_model where { car_names as t1 join cars_data as t2        }   order by desc (?t2_mpg) limit 1 
+select ?t1_model where { car_names as t1 join cars_data as t2        }   order by desc (?t2_mpg) limit 1 
+select (avg( ?t1_horsepower) as ?aggregation_t1_horsepower_384 ) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#horsepower ?t1_horsepower . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_year < '1980') .        }    
+select (avg( ?t1_horsepower) as ?aggregation_t1_horsepower_222 ) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#horsepower ?t1_horsepower . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_year < '1980') .        }    
+select (avg( ?t1_edispl) as ?aggregation_t1_edispl_203 ) where { cars_data as t1 join car_names as t2 FILTER(?t2_model = 'volvo') .        }    
+select (avg( ?t1_edispl) as ?aggregation_t1_edispl_123 ) where { cars_data as t1 join car_names as t2 FILTER(?t2_model = 'volvo') .        }    
+select (max( ?t1_accelerate) as ?aggregation_t1_accelerate_395 ) ?t1_cylinders where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#accelerate ?t1_accelerate . ?t1 dbo:cars_data\#cylinders ?t1_cylinders .        } group by ?t1_cylinders   
+select (max( ?t1_accelerate) as ?aggregation_t1_accelerate_299 ) ?t1_cylinders where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#accelerate ?t1_accelerate . ?t1 dbo:cars_data\#cylinders ?t1_cylinders .        } group by ?t1_cylinders   
+select ?t1_model where { ?t1 a dbo:car_names . ?t1 dbo:car_names\#model ?t1_model .        } group by ?t1_model  order by desc (count(*)) limit 1 
+select ?t1_model where { ?t1 a dbo:car_names . ?t1 dbo:car_names\#model ?t1_model .        } group by ?t1_model  order by desc (count(*)) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . FILTER(?t1_cylinders > '4') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . FILTER(?t1_cylinders > '4') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_year = '1980') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_year = '1980') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select distinct ?t1_year where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#year ?t1_year . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#weight ?t1_weight . FILTER(?t1_weight > '3000' && ?t1_weight < '4000') .        }    
+select distinct ?t1_year where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#year ?t1_year . ?t1 dbo:cars_data\#weight ?t1_weight . ?t1 dbo:cars_data\#weight ?t1_weight . FILTER(?t1_weight > '3000' && ?t1_weight < '4000') .        }    
+select ?t1_horsepower where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#horsepower ?t1_horsepower . ?t1 dbo:cars_data\#accelerate ?t1_accelerate .        }   order by desc (?t1_accelerate) limit 1 
+select ?t1_horsepower where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#horsepower ?t1_horsepower . ?t1 dbo:cars_data\#accelerate ?t1_accelerate .        }   order by desc (?t1_accelerate) limit 1 
+select ?t1_cylinders where { cars_data as t1 join car_names as t2 FILTER(?t2_model = 'volvo') .        }   order by asc (?t1_accelerate) limit 1 
+select ?t1_cylinders where { cars_data as t1 join car_names as t2 FILTER(?t2_model = 'volvo') .        }   order by asc (?t1_accelerate) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#accelerate ?t1_accelerate . FILTER(?t1_accelerate > ?t22_accelerate) .       {select ?t22_accelerate where { ?t22 a dbo:cars_data . ?t22 dbo:cars_data\#accelerate ?t22_accelerate . ?t22 dbo:cars_data\#horsepower ?t22_horsepower .        }   order by desc (?t22_horsepower) limit 1 } }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#accelerate ?t1_accelerate . FILTER(?t1_accelerate > ?t22_accelerate) .       {select ?t22_accelerate where { ?t22 a dbo:cars_data . ?t22 dbo:cars_data\#accelerate ?t22_accelerate . ?t22 dbo:cars_data\#horsepower ?t22_horsepower .        }   order by desc (?t22_horsepower) limit 1 } }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:countries .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:countries .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . FILTER(?t1_cylinders > '6') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . FILTER(?t1_cylinders > '6') .        }    
+select ?t1_model where { car_names as t1 join cars_data as t2 FILTER(?t2_cylinders = '4') .        }   order by desc (?t2_horsepower) limit 1 
+select ?t1_model where { car_names as t1 join cars_data as t2 FILTER(?t2_cylinders = '4') .        }   order by desc (?t2_horsepower) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select ?t1_mpg where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#mpg ?t1_mpg . ?t1 dbo:cars_data\#mpg ?t1_mpg . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_cylinders = '8' || ?t1_year < '1980') .        }   order by desc (?t1_mpg) limit 1 
+select ?t1_mpg where { ?t1 a dbo:cars_data . ?t1 dbo:cars_data\#mpg ?t1_mpg . ?t1 dbo:cars_data\#mpg ?t1_mpg . ?t1 dbo:cars_data\#cylinders ?t1_cylinders . ?t1 dbo:cars_data\#year ?t1_year . FILTER(?t1_cylinders = '8' || ?t1_year < '1980') .        }   order by desc (?t1_mpg) limit 1 
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:continents .        }    
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:continents .        }    
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:continents .        }    
+select distinct ?t1_id ?t1_maker where { car_makers as t1 join model_list as t2 FILTER (?t1_id in (?t3_id)) . FILTER (?t1_maker in (?t3_maker)) .  { car_makers as t3 join model_list as t4      }      } group by ?t1_id ?t1_maker   having(count( *)  >= 2)
+select distinct ?t1_id ?t1_maker where { car_makers as t1 join model_list as t2 FILTER (?t1_id in (?t3_id)) . FILTER (?t1_maker in (?t3_maker)) .  { car_makers as t3 join model_list as t4      }      } group by ?t1_id ?t1_maker   having(count( *)  >= 2)
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:continents .        }    
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:continents .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airports .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airports .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:flights .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:flights .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines . ?t1 dbo:airlines\#country ?t1_country . FILTER(?t1_country = 'USA') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines . ?t1 dbo:airlines\#country ?t1_country . FILTER(?t1_country = 'USA') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Aberdeen') .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Aberdeen') .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Aberdeen') .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Aberdeen') .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Ashley' && ?t2_city = 'Aberdeen') .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Ashley' && ?t2_city = 'Aberdeen') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+ ?t1 a dbo:airlines .      
+ ?t1 a dbo:airlines .      
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:airlines .        }    
+select ((count( *) as ?aggregation_all) as ?col1) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Aberdeen' || ?t2_city = 'Abilene') .        }    
+select (count( *) as ?aggregation_all) where { flights as t1 join airports as t2 FILTER(?t2_city = 'Aberdeen' || ?t2_city = 'Abilene') .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:airlines .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:employee .        }    
+select (count( *) as ?aggregation_all) where { ?t1 a dbo:employee .        }    
+select ?t1_name where { ?t1 a dbo:employee . ?t1 dbo:employee\#name ?t1_name . ?t1 dbo:employee\#age ?t1_age .        }  order by asc (?t1_age)  
+select ?t1_name where { ?t1 a dbo:employee . ?t1 dbo:employee\#name ?t1_name . ?t1 dbo:employee\#age ?t1_age .        }  order by asc (?t1_age)  
+select (count( *) as ?aggregation_all) ?t1_city where { ?t1 a dbo:employee . ?t1 dbo:employee\#city ?t1_city .        } group by ?t1_city   
+select (count( *) as ?aggregation_all) ?t1_city where { ?t1 a dbo:employee . ?t1 dbo:employee\#city ?t1_city .        } group by ?t1_city   
+select ?t1_city where { ?t1 a dbo:employee . ?t1 dbo:employee\#city ?t1_city . ?t1 dbo:employee\#age ?t1_age . FILTER(?t1_age < '30') .        } group by ?t1_city   having(count( *)  > 1)
+select ?t1_city where { ?t1 a dbo:employee . ?t1 dbo:employee\#city ?t1_city . ?t1 dbo:employee\#age ?t1_age . FILTER(?t1_age < '30') .        } group by ?t1_city   having(count( *)  > 1)
+select (count( *) as ?aggregation_all) ?t1_location where { ?t1 a dbo:shop . ?t1 dbo:shop\#location ?t1_location .        } group by ?t1_location   
+select (count( *) as ?aggregation_all) ?t1_location where { ?t1 a dbo:shop . ?t1 dbo:shop\#location ?t1_location .        } group by ?t1_location   
+select ?t1_manager_name ?t1_district where { ?t1 a dbo:shop . ?t1 dbo:shop\#manager_name ?t1_manager_name . ?t1 dbo:shop\#district ?t1_district . ?t1 dbo:shop\#number_products ?t1_number_products .        }   order by desc (?t1_number_products) limit 1 
+select ?t1_manager_name ?t1_district where { ?t1 a dbo:shop . ?t1 dbo:shop\#manager_name ?t1_manager_name . ?t1 dbo:shop\#district ?t1_district . ?t1 dbo:shop\#number_products ?t1_number_products .        }   order by desc (?t1_number_products) limit 1 
+select (min( ?t1_number_products) as ?aggregation_t1_number_products_96 ) (max( ?t1_number_products) as ?aggregation_t1_number_products_37 ) where { ?t1 a dbo:shop . ?t1 dbo:shop\#number_products ?t1_number_products . ?t1 dbo:shop\#number_products ?t1_number_products .        }    
+select (min( ?t1_number_products) as ?aggregation_t1_number_products_188 ) (max( ?t1_number_products) as ?aggregation_t1_number_products_311 ) where { ?t1 a dbo:shop . ?t1 dbo:shop\#number_products ?t1_number_products . ?t1 dbo:shop\#number_products ?t1_number_products .        }    
+select ?t1_name ?t1_location ?t1_district where { ?t1 a dbo:shop . ?t1 dbo:shop\#name ?t1_name . ?t1 dbo:shop\#location ?t1_location . ?t1 dbo:shop\#district ?t1_district . ?t1 dbo:shop\#number_products ?t1_number_products .        }  order by desc (?t1_number_products)  
+select ?t1_name ?t1_location ?t1_district where { ?t1 a dbo:shop . ?t1 dbo:shop\#name ?t1_name . ?t1 dbo:shop\#location ?t1_location . ?t1 dbo:shop\#district ?t1_district . ?t1 dbo:shop\#number_products ?t1_number_products .        }  order by desc (?t1_number_products)  
+select ?t1_name where { ?t1 a dbo:shop . ?t1 dbo:shop\#name ?t1_name . ?t1 dbo:shop\#number_products ?t1_number_products . FILTER(?t1_number_products > ?aggregation_t22_number_products_81) .       {select (avg( ?t22_number_products) as ?aggregation_t22_number_products_81 ) where { ?t22 a dbo:shop . ?t22 dbo:shop\#number_products ?t22_number_products .        }    } }    
+select ?t1_name where { ?t1 a dbo:shop . ?t1 dbo:shop\#name ?t1_name . ?t1 dbo:shop\#number_products ?t1_number_products . FILTER(?t1_number_products > ?aggregation_t22_number_products_3) .       {select (avg( ?t22_number_products) as ?aggregation_t22_number_products_3 ) where { ?t22 a dbo:shop . ?t22 dbo:shop\#number_products ?t22_number_products .        }    } }    
+select ?t1_name where { employee as t1 join evaluation as t2        } group by ?t1_name  order by desc (count(*)) limit 1 
+select ?t1_name where { employee as t1 join evaluation as t2        } group by ?t1_name  order by desc (count(*)) limit 1 
+select ?t1_name where { employee as t1 join evaluation as t2        }   order by desc (?t2_bonus) limit 1 
+select ?t1_name where { employee as t1 join evaluation as t2        }   order by desc (?t2_bonus) limit 1 
+select ?t1_name where { ?t1 a dbo:employee . ?t1 dbo:employee\#name ?t1_name . ?t1 dbo:employee\#employee_id ?t1_employee_id .     Filter not exists {{select ?t22_employee_id where { ?t22 a dbo:evaluation . ?t22 dbo:evaluation\#employee_id ?t22_employee_id .        }    } FILTER (?t1_employee_id in (?t22_employee_id))}  }    
+select ?t1_name where { ?t1 a dbo:employee . ?t1 dbo:employee\#name ?t1_name . ?t1 dbo:employee\#employee_id ?t1_employee_id .     Filter not exists {{select ?t22_employee_id where { ?t22 a dbo:evaluation . ?t22 dbo:evaluation\#employee_id ?t22_employee_id .        }    } FILTER (?t1_employee_id in (?t22_employee_id))}  }    
+select ?t1_name where { shop as t1 join employee as t2 join hiring as t3        } group by ?t1_name  order by desc (count(*)) limit 1 
+select ?t1_name where { shop as t1 join employee as t2 join hiring as t3        } group by ?t1_name  order by desc (count(*)) limit 1 
+select ?t1_name where { ?t1 a dbo:shop . ?t1 dbo:shop\#name ?t1_name . ?t1 dbo:shop\#shop_id ?t1_shop_id .     Filter not exists {{select ?t22_shop_id where { ?t22 a dbo:hiring . ?t22 dbo:hiring\#shop_id ?t22_shop_id .        }    } FILTER (?t1_shop_id in (?t22_shop_id))}  }    
+select ?t1_name where { ?t1 a dbo:shop . ?t1 dbo:shop\#name ?t1_name . ?t1 dbo:shop\#shop_id ?t1_shop_id .     Filter not exists {{select ?t22_shop_id where { ?t22 a dbo:hiring . ?t22 dbo:hiring\#shop_id ?t22_shop_id .        }    } FILTER (?t1_shop_id in (?t22_shop_id))}  }    
+select (count( *) as ?aggregation_all) ?t2_name where { employee as t1 join shop as t2        } group by ?t2_name   
+select (count( *) as ?aggregation_all) ?t2_name where { employee as t1 join shop as t2        } group by ?t2_name   
+select (sum( ?t1_bonus) as ?aggregation_t1_bonus_121 ) where { ?t1 a dbo:evaluation . ?t1 dbo:evaluation\#bonus ?t1_bonus .        }    
+select (sum( ?t1_bonus) as ?aggregation_t1_bonus_0 ) where { ?t1 a dbo:evaluation . ?t1 dbo:evaluation\#bonus ?t1_bonus .        }    
+select ?literal where { ?t1 a dbo:hiring . ?t1 ?t2 ?literal . filter isliteral(?literal) .        }    
+select ?literal where { ?t1 a dbo:hiring . ?t1 ?t2 ?literal . filter isliteral(?literal) .        }    
+select distinct ?t1_district where { ?t1 a dbo:shop . ?t1 dbo:shop\#district ?t1_district . ?t1 dbo:shop\#number_products ?t1_number_products . FILTER(?t1_number_products < '3000') . FILTER (?t1_district in (?t2_district)) .  { ?t2 a dbo:shop . ?t2 dbo:shop\#district ?t2_district . ?t2 dbo:shop\#number_products ?t2_number_products .  FILTER(?t2_number_products > '10000') .     }      }    
+select distinct ?t1_district where { ?t1 a dbo:shop . ?t1 dbo:shop\#district ?t1_district . ?t1 dbo:shop\#number_products ?t1_number_products . FILTER(?t1_number_products < '3000') . FILTER (?t1_district in (?t2_district)) .  { ?t2 a dbo:shop . ?t2 dbo:shop\#district ?t2_district . ?t2 dbo:shop\#number_products ?t2_number_products .  FILTER(?t2_number_products > '10000') .     }      }    
+select distinct (count(distinct ?t1_location) as ?aggregation_t1_location_143 ) where { ?t1 a dbo:shop . ?t1 dbo:shop\#location ?t1_location .        }    
+select distinct (count(distinct ?t1_location) as ?aggregation_t1_location_406 ) where { ?t1 a dbo:shop . ?t1 dbo:shop\#location ?t1_location .        }    

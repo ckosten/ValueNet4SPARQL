@@ -22,5 +22,5 @@ You can either install the script with pip `pip install -r requirements.txt` or 
 
 This setup will run both the evaluation for the semQL to SPARQL translation with the enriched Knowledge Graphs, and the evaluation for the semQL to SQL translation from the original system ValueNet (using the updated ground truth PostgreSQL conformant queries and executing them against PostgreSQL databases, not SQLite like the original system). To run the evaluation for the baseline knowledge graphs you will need to replace the filename with `KG_baseline_ont.json` in both the `playground_evaluation_sparql.py` and `spider_utils_sparql.py` . 
 
-###Fine-tuned Model
+### Fine-tuned Model
 A fine tuned model can be downloaded [here](https://drive.google.com/file/d/1Bn7JWeVVGmyFTNTfr2CwdEQjbhmrBf_N/view?usp=drive_link)

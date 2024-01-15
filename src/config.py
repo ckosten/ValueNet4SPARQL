@@ -15,7 +15,7 @@ def write_config_to_file(args, output_path):
         json.dump(args.__dict__, f, indent=2)
 
 def _add_postgresql_configuration(parser):
-    parser.add_argument('--database_host', default='biosoda.cloudlab.zhaw.ch', type=str)
+    parser.add_argument('--database_host', default='DATABASE_HOST', type=str)
     parser.add_argument('--database_port', default='5432', type=str)
     parser.add_argument('--database_user', default='postgres', type=str)
 
